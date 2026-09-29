@@ -1,0 +1,11 @@
+__pycache__/
+*.egg-info/
+.venv/
+.env
+out/
+# written by the paper/ generators
+paper/tables/
+paper/data/*.tex
+paper/data/*.json
+paper/figures/*.pdf
+paper/figures/*.png

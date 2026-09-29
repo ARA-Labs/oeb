@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oeb"
+version = "1.0.0"
+description = "Open-Endedness Bench: scores how an agent conducts open-ended research from its execution record alone."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = ["anthropic"]
+
+[project.optional-dependencies]
+# paper/ generators: tables, figures, and numbers from the released dataset
+paper = ["matplotlib", "numpy", "pyarrow"]
+
+[tool.setuptools.packages.find]
+include = ["oeb*"]
