@@ -1,7 +1,22 @@
-# Open-Endedness Bench (OEB)
+<h1 align="center">Open-Endedness Bench (OEB)</h1>
+
+<p align="center"><b>Measuring epistemic process from agent records</b></p>
+
+<p align="center">
+  <a href="https://www.agenticresearch.sh/blog/science-in-broad-daylight"><img alt="Blog" src="https://img.shields.io/badge/Blog-Science%20in%20Broad%20Daylight-b23a2e"></a>
+  <a href="https://huggingface.co/datasets/AgentNativeResearchLab/oeb-scored-runs"><img alt="Hugging Face dataset" src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-oeb--scored--runs-ffd21e"></a>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2e7d32"></a>
+</p>
+
+<p align="center">
+  <img src="assets/overview.png" alt="OEB in four steps: raw logs from any harness are converted into one record format; an LLM extracts what the agent said and did with exact quotes and links them into a graph; code counts over the graph to give competence scores and persona traits." width="100%">
+</p>
 
 Code for the paper *Open-Endedness Bench: Measuring Epistemic Process from Agent
-Records*.
+Records*. The blog post
+[Science in Broad Daylight](https://www.agenticresearch.sh/blog/science-in-broad-daylight)
+walks through one scored run, with a short video.
 
 OEB scores how an agent does open-ended research, using only the record of what
 it did. The scorer never reads a reference answer, the task's outcome score, or
@@ -55,6 +70,26 @@ what it did; E4 reads only what it did.
 | T6 Epistemic tempo | hypothesis-first vs. run-then-read |
 
 No axis or trait is folded into an overall score.
+
+## What we found
+
+We scored 119 existing runs over 12 tasks from three benchmarks: PostTrainBench
+(post-training a small language model), Chip-Bench (hardware design), and the
+nanoGPT speedrun (a training-speed record).
+
+- **Most claimed wins are noise.** Checked against the results the benchmarks
+  logged, only 16% (speedrun) to 29% (Chip-Bench) of the improvements agents
+  claim are real.
+- **The best runs keep exploring.** On 9 of 10 tasks, the best run tests more
+  new ideas in its second half than the worst run. On Chip-Bench, an idea's
+  fourth and later tries are 36% of experiments and bring 10% of the real gain.
+- **Research habits follow the model.** For every persona trait, the model that
+  ran explains more of the variance across runs than the task (a median of 43%
+  against 7%).
+
+<p align="center"><img src="assets/winners.png" alt="Left: new ideas first tested in the second half of the best and the worst run of each task; the best run tests more on 9 of 10 tasks. Right: on Chip-Bench, an idea's fourth and later tries are 36% of experiments and 10% of the real gain." width="100%"></p>
+
+<p align="center"><img src="assets/persona.png" alt="Six persona traits for six models on PostTrainBench; each model keeps a characteristic position across tasks, for example GPT-5.5 and GPT-5.6 spend about a tenth of their output on actions and Kimi K3 about a third." width="90%"></p>
 
 ## Pipeline
 
@@ -218,6 +253,16 @@ terms:
 | `chances` (in `measure.json`) | opportunities |
 | `deed_juries.json` | the connecting juries (L2) |
 | `aim.json` | the reward-hacking jury (E4) |
+
+## Citation
+
+```bibtex
+@article{shi2026oeb,
+  title  = {Open-Endedness Bench: Measuring Epistemic Process from Agent Records},
+  author = {Shi, Chengyang and Ji, Xianglin and Huang, Jintao and Wang, Jicheng and He, Yifeng and Liu, Jiachen},
+  year   = {2026}
+}
+```
 
 ## License
 
